@@ -17,6 +17,17 @@ self.addEventListener('fetch', (event) => {
     return
   }
 
+  const isLocalhost = url.hostname === 'localhost' || url.hostname === '127.0.0.1'
+  const isDevAsset =
+    url.pathname.startsWith('/@') ||
+    url.pathname.startsWith('/src/') ||
+    url.pathname.startsWith('/node_modules/') ||
+    url.pathname.startsWith('/__') ||
+    url.pathname.endsWith('.map')
+  if (isLocalhost || isDevAsset) {
+    return
+  }
+
   const isNavigation = request.mode === 'navigate' || (request.destination === '' && request.headers.get('accept')?.includes('text/html'))
   if (isNavigation) {
     event.respondWith(
@@ -45,4 +56,3 @@ self.addEventListener('fetch', (event) => {
     }),
   )
 })
-
