@@ -5,12 +5,28 @@
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#ec4899" />
+    <script>
+      ;(() => {
+        try {
+          const storageKey = 'money-keeper-theme'
+          const raw = localStorage.getItem(storageKey)
+          const mode = raw === 'light' || raw === 'dark' || raw === 'system' ? raw : 'system'
+          const mql = window.matchMedia('(prefers-color-scheme: dark)')
+          const isDark = mode === 'dark' || (mode === 'system' && mql.matches)
+          document.documentElement.classList.toggle('dark', isDark)
+          const meta = document.querySelector('meta[name="theme-color"]')
+          if (meta) {
+            meta.setAttribute('content', isDark ? '#0b1220' : '#ec4899')
+          }
+        } catch {}
+      })()
+    </script>
     <link rel="manifest" href="./manifest.webmanifest" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <title>Quản lý chi tiêu</title>
-    <script type="module" crossorigin src="./assets/index-ClBESqUK.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-D9q34dUq.css">
+    <script type="module" crossorigin src="./assets/index-bjtxTbWD.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BQ3mu5dd.css">
   </head>
   <body>
     <div id="root"></div>
